@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {MapContainer, TileLayer, Marker, Popup, useMapEvents, GeoJSON} from 'react-leaflet';
 import L from 'leaflet';
 import {LightPollutionData} from '../types';
-import {FeatureCollection, Feature} from 'geojson';
+import {FeatureCollection, Feature, Geometry} from 'geojson';
 import {PathOptions} from 'leaflet';
 
 interface BangladeshFeature extends Feature {
@@ -154,8 +154,20 @@ const Map = ({year, onMapClick, pollutionData, regionData}: MapProps) => {
                                     '#FFEDA0';
     };
 
-    const styleFunction = (feature: BangladeshFeature): PathOptions => {
-        const regionName = feature.properties.name;
+    const styleFunction = (feature?: Feature<Geometry, Record<string, unknown>>): PathOptions => {
+        if (!feature) {
+            return {
+                fillColor: '#FFEDA0',
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+
+        const banglaFeature = feature as BangladeshFeature;
+        const regionName = banglaFeature.properties?.name || '';
         const regionData = bangladeshRegionsData[regionName];
         const intensity = regionData ? regionData.intensity : 0;
 
@@ -243,7 +255,7 @@ const Map = ({year, onMapClick, pollutionData, regionData}: MapProps) => {
             <GeoJSON
                 key={`bangladesh-regions-${year}`}
                 data={bangladeshGeoJSON}
-                style={styleFunction}
+                style={styleFunction as L.StyleFunction<Feature<Geometry, Record<string, unknown>>>}
                 onEachFeature={onEachFeature}
             />
 

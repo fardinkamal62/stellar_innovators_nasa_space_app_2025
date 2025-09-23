@@ -7,6 +7,11 @@ interface MapProps {
     year: number;
     onMapClick: (lat: number, lng: number) => void;
     pollutionData: LightPollutionData;
+    regionData: Record<string, {
+        intensity: number;
+        population: number;
+        suggestions: string[];
+    }>;
 }
 
 const DynamicMap = dynamic(

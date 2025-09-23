@@ -6,7 +6,19 @@ import RightPanel from './components/RightPanel';
 import Navigation from './components/Navigation';
 import {LightPollutionData, PollutionLevel} from './types';
 
-const bangladeshData = {
+type YearData = {
+    [region: string]: {
+        intensity: number;
+        population: number;
+        suggestions: string[];
+    }
+};
+
+type BangladeshDataType = {
+    [year: number]: YearData;
+};
+
+const bangladeshData: BangladeshDataType = {
     2020: {
         "Dhaka": {
             intensity: 90,
@@ -361,10 +373,10 @@ export default function Home() {
 
             let pollutionLevel: PollutionLevel = 'moderate';
             if (regionData.intensity > 80) pollutionLevel = 'severe';
-            else if (regionData.intensity > 60) pollutionLevel = 'high';
+            else if (regionData.intensity > 60) pollutionLevel = 'heavy';
             else if (regionData.intensity > 40) pollutionLevel = 'moderate';
             else if (regionData.intensity > 20) pollutionLevel = 'mild';
-            else pollutionLevel = 'minimal';
+            else pollutionLevel = 'none';
 
             const trends = Object.keys(bangladeshData)
                 .map(Number)
@@ -397,10 +409,10 @@ export default function Home() {
 
         let pollutionLevel: PollutionLevel = 'moderate';
         if (regionData.intensity > 80) pollutionLevel = 'severe';
-        else if (regionData.intensity > 60) pollutionLevel = 'high';
+        else if (regionData.intensity > 60) pollutionLevel = 'heavy';
         else if (regionData.intensity > 40) pollutionLevel = 'moderate';
         else if (regionData.intensity > 20) pollutionLevel = 'mild';
-        else pollutionLevel = 'minimal';
+        else pollutionLevel = 'none';
 
         const trends = Object.keys(bangladeshData)
             .map(Number)
