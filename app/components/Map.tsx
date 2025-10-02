@@ -99,11 +99,14 @@ const Map = ({ year, onMapClick, pollutionData, regionData }: MapProps) => {
     const bangladeshRegionsData = regionData || {};
 
     const getColor = (intensity: PollutionLevel) => {
-        return intensity === "severe" ? '#800026' :
-            intensity === "high" ? '#BD0026' :
-                intensity === "moderate" ? '#E31A1C' :
-                    intensity === "low" ? '#FC4E2A' :
-                        '#FFEDA0';
+        switch (intensity) {
+            case 'tolerable': return '#4ade80';  // green-500
+            case 'low': return '#86efac';   // green-300
+            case 'moderate': return '#eab308'; // yellow-500
+            case 'high': return '#f97316';  // orange-500
+            case 'severe': return '#ef4444'; // red-500
+            default: return '#a3a3a3';     // gray-500
+        }
     };
 
     const styleFunction = (feature?: Feature<Geometry, Record<string, unknown>>): PathOptions => {
@@ -122,7 +125,7 @@ const Map = ({ year, onMapClick, pollutionData, regionData }: MapProps) => {
         const regionName = banglaFeature.properties?.name || '';
         const regionData = bangladeshRegionsData[regionName];
 
-        const intensity = regionData ? regionData.intensity : 'good';
+        const intensity = regionData ? regionData.intensity : 'tolerable';
 
         return {
             fillColor: getColor(intensity),

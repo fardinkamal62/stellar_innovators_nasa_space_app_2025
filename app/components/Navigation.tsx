@@ -9,7 +9,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white p-4 flex justify-between items-center z-2000">
+    <nav className="bg-gray-900 text-white p-4 flex justify-between items-center z-20000">
       <div className="flex items-center">
         <h1 className="text-xl font-bold">Light Pollution Visualizer</h1>
         <span className="ml-4 text-sm bg-blue-600 px-2 py-1 rounded">NASA Space Apps Challenge</span>
@@ -28,7 +28,7 @@ const Navigation = () => {
       {showAboutDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-gray-800 text-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold">About Stellar Innovators DIU</h2>
               <button
                 onClick={toggleAboutDialog}
@@ -39,8 +39,8 @@ const Navigation = () => {
                 </svg>
               </button>
             </div>
-
-            <div className="space-y-4">
+            <a href="mailto:raselislam07575@gmail.com" className="text-blue-400 hover:underline text-sm" target='_blank'>raselislam07575@gmail.com</a>
+            <div className="space-y-4 mt-4">
               <div>
                 <h3 className="text-lg font-medium text-blue-400 mb-2">Our Mission</h3>
                 <p className="text-gray-300">
@@ -54,7 +54,7 @@ const Navigation = () => {
                 <h3 className="text-lg font-medium text-blue-400 mb-2">The Team</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-gray-700 p-3 rounded">
-                    <h4 className="font-semibold">Md. Rasel Islam</h4>
+                    <h4 className="font-semibold">MD. Rasel Islam</h4>
                     <p className="text-sm text-gray-400">Team Leader | Researcher</p>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">

@@ -4,6 +4,7 @@ import DynamicMap from './components/DynamicMap';
 import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
 import Navigation from './components/Navigation';
+import LoadingSpinner from './components/LoadingSpinner';
 import { LightPollutionData, PollutionLevel, ApiResponse, RegionMapData } from './types';
 
 // Initial data structure just for first render
@@ -89,6 +90,13 @@ export default function Home() {
         setYear(newYear);
     };
 
+    const handleDistrictChange = (newRegion: string) => {
+        setCurrentRegion(newRegion);
+        if (apiData && apiData[newRegion]) {
+            updateSelectedDataFromApi(newRegion, apiData);
+        }
+    };
+
     const handleMapClick = (lat: number, lng: number) => {
         let clickedRegion = 'Dhaka';
 
@@ -130,20 +138,17 @@ export default function Home() {
         <div className="flex flex-col h-screen bg-gray-900">
             <Navigation />
 
-            <div className="flex flex-1 overflow-hidden relative">
+            <div className={`flex flex-1 overflow-hidden relative ${isLoading ? 'filter blur-sm' : ''}`}>
                 {isPanelOpen.left && (
                     <LeftPanel
                         year={year}
                         onYearChange={handleYearChange}
+                        currentRegion={currentRegion}
+                        onDistrictChange={handleDistrictChange}
                     />
                 )}
 
                 <div className="flex-1 w-full">
-                    {isLoading && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-                            <div className="text-white font-bold">Loading data...</div>
-                        </div>
-                    )}
                     <DynamicMap
                         year={year}
                         onMapClick={handleMapClick}
@@ -161,6 +166,9 @@ export default function Home() {
                     />
                 )}
             </div>
+
+            {/* Loading spinner overlay */}
+            {isLoading && <LoadingSpinner />}
         </div>
     );
 }

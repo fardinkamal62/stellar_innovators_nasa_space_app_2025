@@ -7,21 +7,21 @@ interface RightPanelProps {
 }
 
 const RightPanel = ({ data, isOpen, onToggle }: RightPanelProps) => {
+  // Replace dynamic class generation with direct class mapping
   const getPollutionColor = (level: PollutionLevel) => {
     switch (level) {
-      case 'good': return 'text-green-500';
+      case 'tolerable': return 'text-green-500';
       case 'low': return 'text-green-300';
       case 'moderate': return 'text-yellow-500';
       case 'high': return 'text-orange-500';
       case 'severe': return 'text-red-500';
-      default: return 'text-white';
+      default: return 'text-gray-500';
     }
   };
 
-
   const getTrendColor = (level: PollutionLevel) => {
     switch (level) {
-      case 'good': return 'bg-green-500';
+      case 'tolerable': return 'bg-green-500';
       case 'low': return 'bg-green-300';
       case 'moderate': return 'bg-yellow-500';
       case 'high': return 'bg-orange-500';
@@ -33,7 +33,7 @@ const RightPanel = ({ data, isOpen, onToggle }: RightPanelProps) => {
 
   const getTrendHeight = (level: PollutionLevel) => {
     switch (level) {
-      case 'good': return '20%';
+      case 'tolerable': return '20%';
       case 'low': return '40%';
       case 'moderate': return '60%';
       case 'high': return '80%';
@@ -44,7 +44,7 @@ const RightPanel = ({ data, isOpen, onToggle }: RightPanelProps) => {
 
   const getPollutionDescription = (level: PollutionLevel) => {
     switch (level) {
-      case 'good': return 'Minimal light pollution. Excellent star visibility.';
+      case 'tolerable': return 'Minimal light pollution. Excellent star visibility.';
       case 'low': return 'Some light pollution. Good star visibility.';
       case 'moderate': return 'Moderate light pollution. Limited star visibility.';
       case 'high': return 'Significant light pollution. Few stars visible.';
