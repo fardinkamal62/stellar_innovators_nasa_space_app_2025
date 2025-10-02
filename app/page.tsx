@@ -24,7 +24,6 @@ const regionCoordinates: Record<string, { lat: number, lng: number }> = {
     "Sylhet": { lat: 24.8949, lng: 91.8687 },
     "Rangpur": { lat: 25.7439, lng: 89.2752 },
     "Barisal": { lat: 22.7010, lng: 90.3535 },
-    "Mymensingh": { lat: 24.7471, lng: 90.4203 }
 };
 
 export default function Home() {
@@ -107,7 +106,6 @@ export default function Home() {
         else if (lat > 24.0 && lat < 25.2 && lng > 90.8 && lng < 92.6) clickedRegion = 'Sylhet';
         else if (lat > 25.2 && lat < 26.6 && lng > 88.0 && lng < 90.5) clickedRegion = 'Rangpur';
         else if (lat > 21.5 && lat < 23.4 && lng > 89.8 && lng < 91.0) clickedRegion = 'Barisal';
-        else if (lat > 24.2 && lat < 25.2 && lng > 89.8 && lng < 90.8) clickedRegion = 'Mymensingh';
 
         setCurrentRegion(clickedRegion);
 

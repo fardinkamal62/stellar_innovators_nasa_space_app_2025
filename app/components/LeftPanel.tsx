@@ -9,7 +9,6 @@ const regionCoordinates: Record<string, { lat: number, lng: number }> = {
   "Sylhet": { lat: 24.8949, lng: 91.8687 },
   "Rangpur": { lat: 25.7439, lng: 89.2752 },
   "Barisal": { lat: 22.7010, lng: 90.3535 },
-  "Mymensingh": { lat: 24.7471, lng: 90.4203 }
 };
 
 interface LeftPanelProps {
