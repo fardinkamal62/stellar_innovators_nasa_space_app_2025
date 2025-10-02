@@ -1,17 +1,13 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import {LightPollutionData} from '../types';
+import { LightPollutionData, RegionMapData } from '../types';
 
 interface MapProps {
     year: number;
     onMapClick: (lat: number, lng: number) => void;
     pollutionData: LightPollutionData;
-    regionData: Record<string, {
-        intensity: number;
-        population: number;
-        suggestions: string[];
-    }>;
+    regionData: Record<string, RegionMapData>;
 }
 
 const DynamicMap = dynamic(
