@@ -1,5 +1,12 @@
 'use client';
 import { useState } from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const regionCoordinates: Record<string, { lat: number, lng: number }> = {
   "Dhaka": { lat: 23.8103, lng: 90.4125 },
@@ -19,56 +26,101 @@ interface LeftPanelProps {
 }
 
 const LeftPanel = ({ year, onYearChange, currentRegion, onDistrictChange }: LeftPanelProps) => {
-  const [startYear, setStartYear] = useState(2017);
-  const [endYear, setEndYear] = useState(2080);
+  const [startYear] = useState(2017);
+  const [endYear] = useState(2080);
 
   const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
 
   return (
-    <div className="absolute top-0 left-0 z-10000 h-110 bg-gray-800 text-white w-64 flex-shrink-0 transition-all duration-300 overflow-y-auto">
-      <div className="flex justify-between items-center p-2 border-b border-gray-700">
-        <h2 className="text-xl font-bold">Timeline Controls</h2>
-      </div>
-
+    <Paper
+      elevation={6}
+      sx={{
+        position: 'absolute',
+        top: 24,
+        left: 24,
+        zIndex: 1000,
+        width: 280,
+        minHeight: 400,
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        backdropFilter: 'blur(12px)',
+        borderRadius: 4,
+        boxShadow: 6,
+        overflowY: 'auto',
+      }}
+      className="flex flex-col"
+    >
       <div className="p-4">
-        <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium">Select Year</label>
-          <select
-            value={year}
-            onChange={(e) => onYearChange(Number(e.target.value))}
-            className="w-full p-2 bg-gray-700 border border-gray-600 rounded"
-          >
-            {years.map(y => (
-              <option key={y} value={y}>{y}</option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium">Select District</label>
-          <select
-            value={currentRegion}
-            onChange={(e) => onDistrictChange?.(e.target.value)}
-            className="w-full p-2 bg-gray-700 border border-gray-600 rounded"
-          >
-            {Object.keys(regionCoordinates).map(region => (
-              <option key={region} value={region}>{region}</option>
-            ))}
-          </select>
+        <Typography variant="h6" className="font-bold text-gray-900 mb-2">
+          Timeline Controls
+        </Typography>
+        <Divider className="mb-4" />
+
+        <div className="my-4">
+          <FormControl fullWidth className="mb-6">
+            <InputLabel id="year-select-label" className="text-gray-700">Select Year</InputLabel>
+            <Select
+              labelId="year-select-label"
+              value={year}
+              label="Select Year"
+              onChange={(e) => onYearChange(Number(e.target.value))}
+              className="bg-white rounded"
+              size="small"
+            >
+              {years.map(y => (
+                <MenuItem key={y} value={y}>{y}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
 
-        <h3 className="text-xl font-bold">Legend</h3>
-        <div className="mb-6 p-1 rounded-lg mt-2">
+        <div className="my-4">
+          <FormControl fullWidth className="mb-6">
+            <InputLabel id="district-select-label" className="text-gray-700">Select District</InputLabel>
+            <Select
+              labelId="district-select-label"
+              value={currentRegion}
+              label="Select District"
+              onChange={(e) => onDistrictChange?.(e.target.value)}
+              className="bg-white rounded"
+              size="small"
+            >
+              {Object.keys(regionCoordinates).map(region => (
+                <MenuItem key={region} value={region}>{region}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
 
-          <div className="text-xs">
-            <div className="flex items-center"><span className="w-3 h-3 bg-[#ef4444] mr-1"></span>Severe</div>
-            <div className="flex items-center"><span className="w-3 h-3 bg-[#f97316] mr-1"></span>High</div>
-            <div className="flex items-center"><span className="w-3 h-3 bg-[#eab308] mr-1"></span>Moderate</div>
-            <div className="flex items-center"><span className="w-3 h-3 bg-[#86efac] mr-1"></span>Low</div>
-            <div className="flex items-center"><span className="w-3 h-3 bg-[#4ade80] mr-1"></span>Tolerable</div>
+        <div className="mt-4">
+          <Typography variant="h6" className="font-bold text-gray-900 mb-2">
+            Legend
+          </Typography>
+          <Divider className="mb-2" />
+          <div className="space-y-2 mt-2">
+            <div className="flex items-center text-xs">
+              <span className="w-4 h-4 rounded bg-[#ef4444] mr-2 border border-gray-300"></span>
+              <span className="text-gray-700">Severe</span>
+            </div>
+            <div className="flex items-center text-xs">
+              <span className="w-4 h-4 rounded bg-[#f97316] mr-2 border border-gray-300"></span>
+              <span className="text-gray-700">High</span>
+            </div>
+            <div className="flex items-center text-xs">
+              <span className="w-4 h-4 rounded bg-[#eab308] mr-2 border border-gray-300"></span>
+              <span className="text-gray-700">Moderate</span>
+            </div>
+            <div className="flex items-center text-xs">
+              <span className="w-4 h-4 rounded bg-[#86efac] mr-2 border border-gray-300"></span>
+              <span className="text-gray-700">Low</span>
+            </div>
+            <div className="flex items-center text-xs">
+              <span className="w-4 h-4 rounded bg-[#4ade80] mr-2 border border-gray-300"></span>
+              <span className="text-gray-700">Tolerable</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Paper>
   );
 };
 

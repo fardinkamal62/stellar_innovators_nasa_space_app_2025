@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { LightPollutionData, PollutionLevel, RegionMapData } from '../types';
 import { FeatureCollection, Feature, Geometry } from 'geojson';
@@ -100,7 +100,6 @@ const Map = ({ year, onMapClick, pollutionData, regionData }: MapProps) => {
 
     const getColor = (intensity: PollutionLevel) => {
         switch (intensity) {
-            case 'tolerable': return '#4ade80';  // green-500
             case 'low': return '#86efac';   // green-300
             case 'moderate': return '#eab308'; // yellow-500
             case 'high': return '#f97316';  // orange-500
@@ -125,7 +124,7 @@ const Map = ({ year, onMapClick, pollutionData, regionData }: MapProps) => {
         const regionName = banglaFeature.properties?.name || '';
         const regionData = bangladeshRegionsData[regionName];
 
-        const intensity = regionData ? regionData.intensity : 'tolerable';
+        const intensity = regionData ? regionData.intensity : 'low';
 
         return {
             fillColor: getColor(intensity),
@@ -148,7 +147,7 @@ const Map = ({ year, onMapClick, pollutionData, regionData }: MapProps) => {
             center={[23.8103, 90.4125]}
             zoom={8}
             className="w-full h-full"
-            zoomControl={true}
+            zoomControl={false}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

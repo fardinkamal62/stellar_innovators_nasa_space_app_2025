@@ -1,4 +1,4 @@
-export type PollutionLevel = 'tolerable' | 'low' | 'moderate' | 'high' | 'severe';
+export type PollutionLevel = 'low' | 'moderate' | 'high' | 'severe';
 
 export interface Coordinates {
   lat: number;
