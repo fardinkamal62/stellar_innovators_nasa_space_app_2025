@@ -165,7 +165,6 @@ export default function Home() {
                 )}
             </div>
 
-            {/* Loading spinner overlay */}
             {isLoading && <LoadingSpinner />}
         </div>
     );
