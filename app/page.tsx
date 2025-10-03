@@ -50,7 +50,6 @@ export default function Home() {
                 }
 
                 const data = await response.json();
-                console.log(`API Data fetched for year: ${year}`, data);
                 setApiData(data);
 
                 updateSelectedDataFromApi(currentRegion, data);
