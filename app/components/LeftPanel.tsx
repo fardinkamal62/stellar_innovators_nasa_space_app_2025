@@ -40,7 +40,7 @@ const LeftPanel = ({ year, onYearChange, currentRegion, onDistrictChange }: Left
         left: 24,
         zIndex: 1000,
         width: 280,
-        minHeight: 400,
+        minHeight: 300,
         backgroundColor: 'rgba(255,255,255,0.7)',
         backdropFilter: 'blur(12px)',
         borderRadius: 4,
@@ -112,10 +112,6 @@ const LeftPanel = ({ year, onYearChange, currentRegion, onDistrictChange }: Left
             <div className="flex items-center text-xs">
               <span className="w-4 h-4 rounded bg-[#86efac] mr-2 border border-gray-300"></span>
               <span className="text-gray-700">Low</span>
-            </div>
-            <div className="flex items-center text-xs">
-              <span className="w-4 h-4 rounded bg-[#4ade80] mr-2 border border-gray-300"></span>
-              <span className="text-gray-700">Tolerable</span>
             </div>
           </div>
         </div>

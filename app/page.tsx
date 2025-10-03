@@ -68,7 +68,7 @@ export default function Home() {
         if (data && data[regionName]) {
             const apiResponse = data[regionName];
 
-            const trends: PollutionLevel[] = ['low', 'moderate', 'high', apiResponse.classification_result];
+            const trends: PollutionLevel[] = ['moderate', 'high', 'severe', 'severe'];
 
             setSelectedData({
                 region: regionName,

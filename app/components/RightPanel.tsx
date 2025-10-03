@@ -153,7 +153,7 @@ const RightPanel = ({ data, isOpen, onToggle }: RightPanelProps) => {
 
         <Card className="bg-white shadow rounded">
           <CardContent>
-            <h4 className="font-semibold mb-3">Pollution Trend (2020-2023)</h4>
+            <h4 className="font-semibold mb-3">Pollution Trend (2017-2050)</h4>
             <div className="h-32 rounded p-2">
               <div className="flex items-end h-24 gap-1">
                 {data.trends.map((level, index) => (
@@ -170,8 +170,8 @@ const RightPanel = ({ data, isOpen, onToggle }: RightPanelProps) => {
                 ))}
               </div>
               <div className="flex justify-between text-xs text-gray-400 mt-1">
-                <span>2020</span>
-                <span>2023</span>
+                <span>2017</span>
+                <span>2050</span>
               </div>
             </div>
           </CardContent>

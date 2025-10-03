@@ -26,7 +26,10 @@ const Navigation = () => {
         <div className="flex items-center space-x-3">
           <div className='p-3'>
             <Typography variant="h4" className="font-bold tracking-tight text-gray-900 rounded">
-              Light Pollution Visualizer
+              LumiLess
+              <Typography variant="caption">
+                by Stellar Innovators DIU
+              </Typography>
             </Typography>
             <Typography variant="caption" className="bg-blue-600 text-white p-1 rounded">
               NASA Space Apps Challenge
@@ -63,7 +66,7 @@ const Navigation = () => {
           <div>
             <Typography variant="subtitle1" className="mb-2 font-medium text-gray-500">Our Mission</Typography>
             <Typography variant="body2" className="text-gray-900">
-              Stellar Innovators DIU is dedicated to addressing light pollution through innovative data visualization and analytics.
+              <b>LumiLess</b> is dedicated to addressing light pollution through innovative data visualization and analytics.
               Our mission is to raise awareness about the impact of light pollution on our environment and provide actionable
               insights for communities and policymakers.
             </Typography>
